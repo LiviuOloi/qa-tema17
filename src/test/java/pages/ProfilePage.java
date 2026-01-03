@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ProfilePage {
 
-    static String myProfile;
+    String myProfile;
     private SelenideElement searchInput = $("#search_text_input");
 
 

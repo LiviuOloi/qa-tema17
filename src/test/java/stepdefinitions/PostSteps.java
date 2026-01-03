@@ -18,6 +18,7 @@ public class PostSteps {
 
     private LoginPage loginPage = new LoginPage();
     private PostPage postPage = new PostPage();
+    private String description;
 
 
     @Given("I am logged on the feed page as {string} with password {string}")
@@ -31,12 +32,13 @@ public class PostSteps {
     public void iCreateANewPostWithTheFollowingDetails(DataTable table) {
         Map<String, String> map = table.asMap(String.class, String.class);
         String description = map.get("description");
+        this.description = description;
         postPage.createPost(description);
     }
 
 
     @Then("the post should appear on the feed")
     public void thePostShouldAppearOnTheFeed() {
-        assertTrue("Post not found on feed", postPage.isPostPresent("My first post"));
+        assertTrue("Post not found on feed", postPage.isPostPresent(this.description));
     }
 }
